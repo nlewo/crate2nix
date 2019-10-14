@@ -19,12 +19,12 @@ rec {
   #
 
   rootCrate = {
-    packageId = "with_problematic_crates 0.1.0 (path+file:///home/peter/projects/crate2nix/sample_projects/with_problematic_crates)";
+    packageId = "with_problematic_crates 0.1.0 (path+file:///mnt/data/home/lewo/repos/crate2nix/sample_projects/with_problematic_crates)";
 
     # Use this attribute to refer to the derivation building your root crate package.
     # You can override the features with rootCrate.build.override { features = [ "default" "feature1" ... ]; }.
     build = buildRustCrateWithFeatures {
-      packageId = "with_problematic_crates 0.1.0 (path+file:///home/peter/projects/crate2nix/sample_projects/with_problematic_crates)";
+      packageId = "with_problematic_crates 0.1.0 (path+file:///mnt/data/home/lewo/repos/crate2nix/sample_projects/with_problematic_crates)";
       features = rootFeatures;
     };
   };
@@ -35,9 +35,9 @@ rec {
   # workspaceMembers."${crateName}".build.override { features = [ "default" "feature1" ... ]; }.
   workspaceMembers = {
     "with_problematic_crates" = {
-      packageId = "with_problematic_crates 0.1.0 (path+file:///home/peter/projects/crate2nix/sample_projects/with_problematic_crates)";
+      packageId = "with_problematic_crates 0.1.0 (path+file:///mnt/data/home/lewo/repos/crate2nix/sample_projects/with_problematic_crates)";
       build = buildRustCrateWithFeatures {
-        packageId = "with_problematic_crates 0.1.0 (path+file:///home/peter/projects/crate2nix/sample_projects/with_problematic_crates)";
+        packageId = "with_problematic_crates 0.1.0 (path+file:///mnt/data/home/lewo/repos/crate2nix/sample_projects/with_problematic_crates)";
         features = rootFeatures;
       };
     };
@@ -122,7 +122,6 @@ rec {
         version = "0.2.6";
         edition = "2015";
         sha256 = "0axmqrq0iykv52ql9gqp152dyb8mr6yzhgaw7ipvnvba50zmdx8i";
-        libName = "actix_net";
         authors = [
           "Nikolay Kim <fafhrd91@gmail.com>"
         ];
@@ -158,7 +157,6 @@ rec {
         version = "0.7.19";
         edition = "2015";
         sha256 = "1m4bw84108j141w79y7shcf0adn4m00kzcmylp723pmsr20l5fb6";
-        libName = "actix_web";
         authors = [
           "Nikolay Kim <fafhrd91@gmail.com>"
         ];
@@ -237,7 +235,7 @@ rec {
           "tls" = [ "native-tls" "tokio-tls" "actix-net/tls" ];
           "uds" = [ "tokio-uds" ];
         };
-        resolvedDefaultFeatures = [ "brotli" "brotli2" "cell" "default" "flate2" "flate2-c" "session" ];
+        resolvedDefaultFeatures = [ "actix-net" "brotli" "brotli2" "cell" "cookie" "default" "flate2" "flate2-c" "session" ];
       };
     "actix_derive 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -279,7 +277,6 @@ rec {
         version = "0.7.3";
         edition = "2015";
         sha256 = "0dn42fbdms4brigqphxrvzbjd1s4knyjlzky30kgvpnrcl4sqqdv";
-        libName = "aho_corasick";
         authors = [
           "Andrew Gallant <jamslam@gmail.com>"
         ];
@@ -293,7 +290,7 @@ rec {
           "default" = [ "std" ];
           "std" = [ "memchr/use_std" ];
         };
-        resolvedDefaultFeatures = [ "default" "std" ];
+        resolvedDefaultFeatures = [ "default" "memchr" "std" ];
       };
     "arc-swap 0.3.11 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -665,7 +662,6 @@ rec {
         version = "0.0.3";
         edition = "2015";
         sha256 = "1z9lby5sr6vslfd14d6igk03s7awf91mxpsfmsp3prxbxlk0x7h5";
-        libPath = "cloudabi.rs";
         authors = [
           "Nuxi (https://nuxi.nl/) and contributors"
         ];
@@ -812,7 +808,7 @@ rec {
           "nightly" = [ "crossbeam-utils/nightly" "arrayvec/use_union" ];
           "std" = [ "crossbeam-utils/std" "lazy_static" ];
         };
-        resolvedDefaultFeatures = [ "default" "lazy_static" "std" ];
+        resolvedDefaultFeatures = [ "crossbeam-utils" "default" "lazy_static" "std" ];
       };
     "crossbeam-queue 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -887,7 +883,6 @@ rec {
         edition = "2015";
         sha256 = "0lj3hzmaixcf5iihm4xngarnhs7ivjn88aph48pmsk3y5x139194";
         procMacro = true;
-        libPath = "lib.rs";
         authors = [
           "Simon Sapin <simon.sapin@exyr.org>"
         ];
@@ -1042,8 +1037,6 @@ rec {
         version = "1.20141219.5";
         edition = "2015";
         sha256 = "1pmfaabps0x6v6cd4fbk9ssykhkmc799dma2y78fhk7gvyr5gyl4";
-        libName = "encoding_index_japanese";
-        libPath = "lib.rs";
         authors = [
           "Kang Seonghoon <public+rust@mearie.org>"
         ];
@@ -1059,8 +1052,6 @@ rec {
         version = "1.20141219.5";
         edition = "2015";
         sha256 = "1b756n7gcilkx07y7zjrikcg0b8v8yd6mw8w01ji8sp3k1cabcf2";
-        libName = "encoding_index_korean";
-        libPath = "lib.rs";
         authors = [
           "Kang Seonghoon <public+rust@mearie.org>"
         ];
@@ -1076,8 +1067,6 @@ rec {
         version = "1.20141219.5";
         edition = "2015";
         sha256 = "0rb4xd8cqymhqffqqxdk18mf9n354vs50ar66jrysb1z6ymcvvpy";
-        libName = "encoding_index_simpchinese";
-        libPath = "lib.rs";
         authors = [
           "Kang Seonghoon <public+rust@mearie.org>"
         ];
@@ -1093,8 +1082,6 @@ rec {
         version = "1.20141219.5";
         edition = "2015";
         sha256 = "07df3jrfwfmzi2s352lvcpvy5dqpy2s45d2xx2dz1x7zh3q5284d";
-        libName = "encoding_index_singlebyte";
-        libPath = "lib.rs";
         authors = [
           "Kang Seonghoon <public+rust@mearie.org>"
         ];
@@ -1110,8 +1097,6 @@ rec {
         version = "1.20141219.5";
         edition = "2015";
         sha256 = "0lb12nbv29cy41gx26yz3v4kfi8h1xbn1ppja8szgqi2zm1wlywn";
-        libName = "encoding_index_tradchinese";
-        libPath = "lib.rs";
         authors = [
           "Kang Seonghoon <public+rust@mearie.org>"
         ];
@@ -1127,7 +1112,6 @@ rec {
         version = "0.1.4";
         edition = "2015";
         sha256 = "0z09kwh4z76q00cfr081rgjbnai4s2maq2vk88lgrq9d6bkf93f6";
-        libPath = "index_tests.rs";
         authors = [
           "Kang Seonghoon <public+rust@mearie.org>"
         ];
@@ -1311,7 +1295,6 @@ rec {
         version = "1.0.6";
         edition = "2015";
         sha256 = "128mlh23y3gg6ag5h8iiqlcbl59smisdzraqy88ldrf75kbw27ip";
-        libPath = "lib.rs";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -1409,7 +1392,7 @@ rec {
           "default" = [ "with-deprecated" ];
           "with-deprecated" = [ "futures/with-deprecated" ];
         };
-        resolvedDefaultFeatures = [ "default" "with-deprecated" ];
+        resolvedDefaultFeatures = [ "default" "futures" "with-deprecated" ];
       };
     "generic-array 0.12.0 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -1417,7 +1400,6 @@ rec {
         version = "0.12.0";
         edition = "2015";
         sha256 = "12fjpkx1ilqlmynis45g0gh69zkad6jnsc589j64z3idk18lvv91";
-        libName = "generic_array";
         authors = [
           "Bartłomiej Kamiński <fizyk20@gmail.com>"
           "Aaron Trent <novacrazy@gmail.com>"
@@ -1743,7 +1725,6 @@ rec {
         version = "0.2.2";
         edition = "2015";
         sha256 = "1lrw1hbinyvr6cp28g60z97w32w8vsk6pahk64pmrv2fmby8srfj";
-        libName = "kernel32";
         authors = [
           "Peter Atashian <retep998@gmail.com>"
         ];
@@ -1911,7 +1892,6 @@ rec {
         version = "0.7.5";
         edition = "2015";
         sha256 = "039m4lsyhnma1jkrjlk8rwqhmvc1jgbs8dskqn16gc2yr5f6ji2k";
-        libPath = "lib.rs";
         authors = [
           "The html5ever Project Developers"
         ];
@@ -1936,7 +1916,6 @@ rec {
         version = "0.1.8";
         edition = "2015";
         sha256 = "03hl636fg6xggy0a26200xs74amk3k9n0908rga2szn68agyz3cv";
-        libPath = "lib.rs";
         authors = [
           "Simon Sapin <simon.sapin@exyr.org>"
         ];
@@ -2015,8 +1994,6 @@ rec {
         version = "0.1.11";
         edition = "2015";
         sha256 = "0l2wsakqjj7kc06dwxlpz4h8wih0f9d1idrz5gb1svipvh81khsm";
-        libName = "miniz_sys";
-        libPath = "lib.rs";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
         ];
@@ -2050,7 +2027,6 @@ rec {
         version = "0.2.1";
         edition = "2015";
         sha256 = "1zsk334nhy2rvyhbr0815l0gp6w40al6rxxafkycaafx3m9j8cj2";
-        build = "src/build.rs";
         authors = [
           "Frommi <daniil.liferenko@gmail.com>"
         ];
@@ -2193,7 +2169,6 @@ rec {
         version = "1.0.3";
         edition = "2015";
         sha256 = "1lxbd0n9gwvzg41bxiij0c28g1sp1jhp4h1rh10qisc8viyhsdj0";
-        libName = "debug_unreachable";
         authors = [
           "Matt Brubeck <mbrubeck@limpet.net>"
           "Jonathan Reem <jonathan.reem@gmail.com>"
@@ -2240,7 +2215,7 @@ rec {
           "std" = [ "alloc" "memchr/use_std" ];
           "verbose-errors" = [ "alloc" ];
         };
-        resolvedDefaultFeatures = [ "alloc" "default" "std" ];
+        resolvedDefaultFeatures = [ "alloc" "default" "memchr" "std" ];
       };
     "num-integer 0.1.39 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -2350,7 +2325,7 @@ rec {
           "nightly" = [ "parking_lot_core/nightly" "lock_api/nightly" ];
           "owning_ref" = [ "lock_api/owning_ref" ];
         };
-        resolvedDefaultFeatures = [ "default" "owning_ref" ];
+        resolvedDefaultFeatures = [ "default" "lock_api" "owning_ref" ];
       };
     "parking_lot_core 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -2387,7 +2362,6 @@ rec {
         version = "1.0.1";
         edition = "2015";
         sha256 = "04ahrp7aw4ip7fmadb0bknybmkfav0kk0gw4ps3ydq5w6hr0ib5i";
-        libPath = "lib.rs";
         authors = [
           "The rust-url developers"
         ];
@@ -2482,7 +2456,7 @@ rec {
           "macros" = [ "phf_macros" ];
           "unicase" = [ "phf_shared/unicase" ];
         };
-        resolvedDefaultFeatures = [ "unicase" ];
+        resolvedDefaultFeatures = [ "phf_shared" "unicase" ];
       };
     "phf_codegen 0.7.24 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -2571,7 +2545,6 @@ rec {
         version = "0.1.6";
         edition = "2015";
         sha256 = "1nk661dxs6ixlrw1ilsr22v0zb91fg9kyxs2ikkl12y4qi2f72g2";
-        libPath = "lib.rs";
         authors = [
           "Simon Sapin <simon.sapin@exyr.org>"
         ];
@@ -2610,7 +2583,7 @@ rec {
           "default" = [ "proc-macro" ];
           "proc-macro" = [ "proc-macro2/proc-macro" ];
         };
-        resolvedDefaultFeatures = [ "default" "proc-macro" ];
+        resolvedDefaultFeatures = [ "default" "proc-macro" "proc-macro2" ];
       };
     "rand 0.5.6 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -2655,7 +2628,7 @@ rec {
           "serde1" = [ "serde" "serde_derive" "rand_core/serde1" ];
           "std" = [ "rand_core/std" "alloc" "libc" "winapi" "cloudabi" "fuchsia-cprng" ];
         };
-        resolvedDefaultFeatures = [ "alloc" "cloudabi" "default" "fuchsia-cprng" "libc" "std" "winapi" ];
+        resolvedDefaultFeatures = [ "alloc" "cloudabi" "default" "fuchsia-cprng" "libc" "rand_core" "std" "winapi" ];
       };
     "rand 0.6.5 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -2703,7 +2676,7 @@ rec {
           "stdweb" = [ "rand_os/stdweb" ];
           "wasm-bindgen" = [ "rand_os/wasm-bindgen" ];
         };
-        resolvedDefaultFeatures = [ "alloc" "default" "rand_os" "std" ];
+        resolvedDefaultFeatures = [ "alloc" "default" "rand_core" "rand_jitter" "rand_os" "std" ];
       };
     "rand_chacha 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -2746,7 +2719,7 @@ rec {
           "serde1" = [ "rand_core/serde1" ];
           "std" = [ "rand_core/std" ];
         };
-        resolvedDefaultFeatures = [ "alloc" "std" ];
+        resolvedDefaultFeatures = [ "alloc" "rand_core" "std" ];
       };
     "rand_core 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -2827,7 +2800,7 @@ rec {
         features = {
           "std" = [ "rand_core/std" ];
         };
-        resolvedDefaultFeatures = [ "std" ];
+        resolvedDefaultFeatures = [ "rand_core" "std" ];
       };
     "rand_os 0.1.3 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -2933,7 +2906,6 @@ rec {
         version = "0.1.54";
         edition = "2015";
         sha256 = "1ndcp7brnvii87ndcd34fk846498r07iznphkslcy0shic9cp4rr";
-        libName = "syscall";
         authors = [
           "Jeremy Soller <jackpot51@gmail.com>"
         ];
@@ -2998,7 +2970,6 @@ rec {
         version = "0.6.2";
         edition = "2015";
         sha256 = "1vm5lk75n5bzaygf0cjh5fv31m29955pwpkk1d04ls9ix631rhdk";
-        libName = "resolv_conf";
         authors = [
           "paul@colomiets.name"
         ];
@@ -3224,7 +3195,6 @@ rec {
         version = "0.8.1";
         edition = "2015";
         sha256 = "0pls9la06vkz4kjm79vcls00bp3p56wgvcj5x8d9bnjxhjj17kkp";
-        libName = "sha1";
         authors = [
           "RustCrypto Developers"
         ];
@@ -3239,7 +3209,7 @@ rec {
           "default" = [ "std" ];
           "std" = [ "digest/std" ];
         };
-        resolvedDefaultFeatures = [ "default" "std" ];
+        resolvedDefaultFeatures = [ "default" "digest" "std" ];
       };
     "sha1 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -3316,7 +3286,6 @@ rec {
         version = "0.6.9";
         edition = "2015";
         sha256 = "0p96l51a2pq5y0vn48nhbm6qslbc6k8h28cxm0pmzkqmj7xynz6w";
-        libPath = "lib.rs";
         authors = [
           "Simon Sapin <simon.sapin@exyr.org>"
         ];
@@ -3412,7 +3381,6 @@ rec {
         version = "0.4.2";
         edition = "2015";
         sha256 = "1y4fmlxqilijdvbsfr2z98paggfj9fpsyaq50v0p0vd9755z791i";
-        libPath = "lib.rs";
         authors = [
           "The Servo Project Developers"
         ];
@@ -3432,7 +3400,6 @@ rec {
         version = "0.3.0";
         edition = "2015";
         sha256 = "0yc59f5npg4ip56aha03yzc7nxgl7c31hv6kq7zrx7rvs3h1cb8j";
-        libPath = "lib.rs";
         authors = [
           "The Servo Project Developers"
         ];
@@ -3465,7 +3432,7 @@ rec {
           "printing" = [ "quote" ];
           "proc-macro" = [ "proc-macro2/proc-macro" "quote/proc-macro" ];
         };
-        resolvedDefaultFeatures = [ "clone-impls" "default" "derive" "extra-traits" "fold" "full" "parsing" "printing" "proc-macro" "quote" "visit" ];
+        resolvedDefaultFeatures = [ "clone-impls" "default" "derive" "extra-traits" "fold" "full" "parsing" "printing" "proc-macro" "proc-macro2" "quote" "visit" ];
       };
     "synstructure 0.10.1 (registry+https://github.com/rust-lang/crates.io-index)"
       = rec {
@@ -4021,7 +3988,6 @@ rec {
         version = "0.5.0";
         edition = "2015";
         sha256 = "0a4hhxsivy13q5zaqsjbxp1car4szvd8y9wfyvkbk7agmvbx3kh7";
-        libName = "trust_dns_proto";
         authors = [
           "Benjamin Fry <benjaminfry@me.com>"
         ];
@@ -4059,7 +4025,6 @@ rec {
         version = "0.6.3";
         edition = "2015";
         sha256 = "15lnb29iv97939c9jv74nccr0ddpyfg467y3n1bxdsy0g6488z21";
-        libName = "trust_dns_proto";
         authors = [
           "Benjamin Fry <benjaminfry@me.com>"
         ];
@@ -4097,7 +4062,6 @@ rec {
         version = "0.10.3";
         edition = "2015";
         sha256 = "175bmfrpfz660a8fpxi7fcxyj9fycqgyr97h9kvknblm8xjr1383";
-        libName = "trust_dns_resolver";
         authors = [
           "Benjamin Fry <benjaminfry@me.com>"
         ];
@@ -4149,7 +4113,6 @@ rec {
         version = "1.10.0";
         edition = "2015";
         sha256 = "1v2cgg0mlzkg5prs7swysckgk2ay6bpda8m83c2sn3z77dcsx3bc";
-        build = "build/main.rs";
         authors = [
           "Paho Lurie-Gregg <paho@paholg.com>"
           "Andre Bogus <bogusandre@gmail.com>"
@@ -4309,7 +4272,6 @@ rec {
         version = "0.3.4";
         edition = "2015";
         sha256 = "0lcd6jasrf8p9p0q20qyf10c6xhvw40m2c4rr105hbk6zy26nj1q";
-        libName = "unicode_bidi";
         authors = [
           "The Servo Project Developers"
         ];
@@ -4357,7 +4319,6 @@ rec {
         version = "0.6.2";
         edition = "2015";
         sha256 = "189ir1h2xgb290bhjchwczr9ygia1f3ipsydf6pwnnb95lb8fihg";
-        libPath = "src/untrusted.rs";
         authors = [
           "Brian Smith <brian@briansmith.org>"
         ];
@@ -4394,7 +4355,6 @@ rec {
         version = "0.7.5";
         edition = "2015";
         sha256 = "02y7d0ch5zfdy0mailqfb14vcbhr7kw1nsfrs0q9c4bq5g9c10qp";
-        libName = "utf8";
         authors = [
           "Simon Sapin <simon.sapin@exyr.org>"
         ];
@@ -4584,7 +4544,6 @@ rec {
         version = "0.1.1";
         edition = "2015";
         sha256 = "1lxlpi87rkhxcwp2ykf1ldw3p108hwm24nywf3jfrvmff4rjhqga";
-        libName = "build";
         authors = [
           "Peter Atashian <retep998@gmail.com>"
         ];
@@ -4692,7 +4651,7 @@ rec {
         features = {
         };
       };
-    "with_problematic_crates 0.1.0 (path+file:///home/peter/projects/crate2nix/sample_projects/with_problematic_crates)"
+    "with_problematic_crates 0.1.0 (path+file:///mnt/data/home/lewo/repos/crate2nix/sample_projects/with_problematic_crates)"
       = rec {
         crateName = "with_problematic_crates";
         version = "0.1.0";
@@ -4730,7 +4689,6 @@ rec {
         version = "0.2.1";
         edition = "2015";
         sha256 = "1zpy9d9wk11sj17fczfngcj28w4xxjs3b4n036yzpy38dxp4f7kc";
-        libName = "ws2_32";
         authors = [
           "Peter Atashian <retep998@gmail.com>"
         ];
